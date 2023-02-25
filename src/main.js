@@ -217,12 +217,16 @@ function AUTHOR(d) {
     let Ath = [];
     let counts = {};
     let AuthStrings = [];
+
     for (let i = 0; i < d.length; i++) {
-        AuthStrings = d[i].author.trim().split(/.and./);
-        for (let j = 0; j < AuthStrings.length; j++) {
-            Ath.push(AuthStrings[j]);
-        };
+        if ('author' in d[i]) {
+            AuthStrings = d[i].author.trim().split(/.and./);
+            for (let j = 0; j < AuthStrings.length; j++) {
+                Ath.push(AuthStrings[j]);
+            };
+        }
     };
+
     Ath.forEach(function (x) {
         counts[x] = (counts[x] || 0) + 1;
     });
