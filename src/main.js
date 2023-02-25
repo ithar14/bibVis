@@ -1,8 +1,10 @@
 // load bibtex file 
+/*
 async function getData() {
     let bibtexString = ""; //full biblio as a string
     //let file = "https://raw.githubusercontent.com/ithar14/test-file/main/2/bib.bib"
-    let file = "C:\Users\Dell\Desktop\webb\bibliography (2).bib"
+    let file= '/upload-file'
+
     await fetch(file)
         .then(response => response.text())
         .then(data => {
@@ -17,18 +19,28 @@ async function getData() {
 }
 
 getData(); /// execute
+*/
 
-readfile();
-
+let data;
 
 ////////////////////////////////////
-function readFile(){
-    var reader  = new FileReader();
+function readFile(input) {
+    let file = input.files[0];
 
-    reader.onloadend = function () {
-    console.log(reader.result);
-     }
-    reader.readAsDataURL(file);
+    let reader = new FileReader();
+
+    reader.readAsText(file);
+
+    reader.onload = function () {
+        data = reader.result;
+        bibtexString = data;
+        bibJson(bibtexString);
+        draw(bibJson(bibtexString));
+    };
+
+    reader.onerror = function () {
+        alert(reader.error);
+    };
 }
 
 function bibJson(bibtexString) {
@@ -152,7 +164,6 @@ function draw(data) {
 
 
     /////////////////AUTHORS/////////////////
-    
     console.log(AUTHOR(data))
 
     keysSorted = Object.keys(AUTHOR(data)[1]).sort(function (a, b) { return AUTHOR(data)[1][a] - AUTHOR(data)[1][b] }).reverse()
@@ -205,7 +216,7 @@ function JOURNAL(d) {
 function AUTHOR(d) {
     let Ath = [];
     let counts = {};
-    let AuthStrings=[];
+    let AuthStrings = [];
     for (let i = 0; i < d.length; i++) {
         AuthStrings = d[i].author.trim().split(/.and./);
         for (let j = 0; j < AuthStrings.length; j++) {

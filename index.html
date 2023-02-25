@@ -31,14 +31,9 @@
 
 <body>
     <h1>.bibVis</h1>
+    
+    <input type="file" id="readfile" name="bibTex" accept=".bib" onchange="readFile(this)" />
 
-    <input
-      type="file"
-      id="readfile"
-      name="bibTex"
-      accept=".bib" 
-      onchange="readFile()"/>
-        
 
     <div class="graph">
         <svg id="Yrviz" width="300" height="300"></svg>
