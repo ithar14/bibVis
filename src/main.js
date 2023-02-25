@@ -127,8 +127,11 @@ function draw(data) {
 
 
     /////////////////////////////////////////
-
+    Jrreversesort=Object.entries(JOURNAL(data)[1]).sort(function (a, b) { return JOURNAL(data)[1][a] - JOURNAL(data)[1][b] }).reverse();
     const dtJr = JOURNAL(data)[1]
+    //const dtJr = Object.fromEntries(Jrreversesort.splice(70, 77))
+    
+    //Object.fromEntries
     var color = d3.scaleOrdinal()
         .domain(dtJr)
         .range(d3.schemeSet2);
@@ -164,6 +167,7 @@ function draw(data) {
 
 
     /////////////////AUTHORS/////////////////
+    console.log(Object.entries(JOURNAL(data)[1]).sort((a,b) => b[1]-a[1]))
     console.log(AUTHOR(data))
 
     keysSorted = Object.keys(AUTHOR(data)[1]).sort(function (a, b) { return AUTHOR(data)[1][a] - AUTHOR(data)[1][b] }).reverse()
@@ -212,6 +216,7 @@ function JOURNAL(d) {
     });
     return [Jr, counts];
 }
+
 
 function AUTHOR(d) {
     let Ath = [];
