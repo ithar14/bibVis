@@ -68,22 +68,25 @@ function bibJson(bibtexString) {
 ///////////////////////////////////
 
 function draw(data) {
-    // set the dimensions and margins of the graph
-    var margin = { top: 30, right: 30, bottom: 30, left: 30 },
-        width = 300 - margin.left - margin.right,
-        height = 300 - margin.top - margin.bottom;
 
+    let topFive=5;
+    // set the dimensions and margins of the graph
+    var marginYr = { top: 30, right: 30, bottom: 30, left: 30 },
+        wid=Object.keys(YEAR(data)[1]).length* 10,
+        widthYr = 300 - marginYr.left - marginYr.right,
+        heightYr = 300 - marginYr.top - marginYr.bottom;
+    console.log(Object.keys(YEAR(data)[1]).length)
     var svgYr = d3.select("#Yrviz")
         .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
+        .attr("width", widthYr + marginYr.left + marginYr.right)
+        .attr("height", heightYr + marginYr.top + marginYr.bottom)
         .append("g")
         .attr("transform",
-            "translate(" + margin.left + "," + margin.top + ")");
+            "translate(" + marginYr.left + "," + marginYr.top + ")");
 
     var widthJr = 300
     heightJr = widthJr
-    marginJr = 40
+    marginJr = 20
     var radius = Math.min(widthJr, heightJr) / 2 - marginJr
     var svgJr = d3.select("#Jrviz")
         .append("svg")
@@ -97,11 +100,11 @@ function draw(data) {
         value: value
     }));
     var x = d3.scaleBand()
-        .range([0, width])
+        .range([0, widthYr])
         .domain(dtYr.map(function (d) { return d.key; }))
         .padding(0.2);
     svgYr.append("g")
-        .attr("transform", "translate(0," + height + ")")
+        .attr("transform", "translate(0," + heightYr + ")")
         .call(d3.axisBottom(x))
         .selectAll("text")
         .attr("transform", "translate(-10,0)rotate(-45)")
@@ -110,7 +113,7 @@ function draw(data) {
     // Y axis
     var y = d3.scaleLinear()
         .domain([0, Math.max(...Object.values(YEAR(data)[1]))])
-        .range([height, 0]);
+        .range([heightYr, 0]);
     svgYr.append("g")
         .call(d3.axisLeft(y));
 
@@ -122,15 +125,15 @@ function draw(data) {
         .attr("x", function (d) { return x(d.key); })
         .attr("y", function (d) { return y(d.value); })
         .attr("width", x.bandwidth())
-        .attr("height", function (d) { return height - y(d.value); })
-        .attr("fill", "#69b3a2")
+        .attr("height", function (d) { return heightYr - y(d.value); })
+        .attr("fill", "#D9D9D9")
 
+    document.getElementById("TopYr").innerHTML = "Year"
 
     /////////////////////////////////////////
-    Jrreversesort=Object.entries(JOURNAL(data)[1]).sort(function (a, b) { return JOURNAL(data)[1][a] - JOURNAL(data)[1][b] }).reverse();
-    const dtJr = JOURNAL(data)[1]
-    //const dtJr = Object.fromEntries(Jrreversesort.splice(70, 77))
-    
+    Jrreversesort=Object.entries(JOURNAL(data)[1]).sort((a,b) => b[1]-a[1]);
+    const dtJr = Object.fromEntries(Jrreversesort.slice(0, topFive))
+    console.log(dtJr)
     //Object.fromEntries
     var color = d3.scaleOrdinal()
         .domain(dtJr)
@@ -165,18 +168,18 @@ function draw(data) {
         .style("text-anchor", "middle")
         .style("font-size", widthJr / 30)
 
-
+    document.getElementById("TopJr").innerHTML = "Top Journals"
     /////////////////AUTHORS/////////////////
-    console.log(Object.entries(JOURNAL(data)[1]).sort((a,b) => b[1]-a[1]))
+    //console.log(Object.entries(JOURNAL(data)[1]).sort((a,b) => b[1]-a[1]))
     console.log(AUTHOR(data))
 
     keysSorted = Object.keys(AUTHOR(data)[1]).sort(function (a, b) { return AUTHOR(data)[1][a] - AUTHOR(data)[1][b] }).reverse()
-    document.getElementById("Top").innerHTML = "Top Authors:"
+    document.getElementById("TopAth").innerHTML = "Top Authors:"
     var x = document.createElement("OL");
     x.setAttribute("id", "myOl");
     document.getElementById('Ath').appendChild(x);
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < topFive; i++) {
         var y = document.createElement("LI");
         var t = document.createTextNode(Object.values(keysSorted)[i]);
         y.appendChild(t);

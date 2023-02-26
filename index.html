@@ -30,17 +30,24 @@
 </head>
 
 <body>
-    <h1>.bibVis</h1>
-    
-    <input type="file" id="readfile" name="bibTex" accept=".bib" onchange="readFile(this)" />
+    <div class="container">
+        <h1>.bibVis</h1>
 
+        <input type="file" id="readfile" name="bibTex" accept=".bib" onchange="readFile(this)" />
 
-    <div class="graph">
-        <svg id="Yrviz" width="300" height="300"></svg>
-        <svg id="Jrviz" width="300" height="300"></svg>
-        <div>
-            <p id="Top"></p>
-            <span id="Ath"></span>
+        <div class="graph">
+            <div>
+                <svg id="Yrviz" width="300" height="300"></svg>
+                <p id="TopYr"></p>
+            </div>
+            <div>
+                <svg id="Jrviz" width="300" height="300"></svg>
+                <p id="TopJr"></p>
+            </div>
+            <div>
+                <p id="TopAth"></p>
+                <span id="Ath"></span>
+            </div>
         </div>
     </div>
 
