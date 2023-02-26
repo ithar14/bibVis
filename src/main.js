@@ -69,13 +69,24 @@ function bibJson(bibtexString) {
 
 function draw(data) {
 
-    let topFive=5;
+    let topFive = 5;
     // set the dimensions and margins of the graph
-    var marginYr = { top: 30, right: 30, bottom: 30, left: 30 },
-        wid=Object.keys(YEAR(data)[1]).length* 10,
-        widthYr = 300 - marginYr.left - marginYr.right,
-        heightYr = 300 - marginYr.top - marginYr.bottom;
-    console.log(Object.keys(YEAR(data)[1]).length)
+    var svgYrht = document.getElementById('Yrviz');
+    var marginYr = { top: 30, right: 30, bottom: 30, left: 30 };
+    var wid = Object.keys(YEAR(data)[1]).length * 10;
+    svgYrht.setAttribute("width", `${wid}`)
+    if (wid > 300) {
+        console.log(svgYrht.getBoundingClientRect().width)
+        var widthYr = wid - marginYr.left - marginYr.right;
+        var heightYr = 300 - marginYr.top - marginYr.bottom;
+    }
+    else {
+        svgYrht.setAttribute("width", "300px")
+        var widthYr = 300 - marginYr.left - marginYr.right;
+        var heightYr = 300 - marginYr.top - marginYr.bottom;
+
+    }
+    //console.log(Object.keys(YEAR(data)[1]).length)
     var svgYr = d3.select("#Yrviz")
         .append("svg")
         .attr("width", widthYr + marginYr.left + marginYr.right)
@@ -94,7 +105,7 @@ function draw(data) {
         .attr("height", heightJr)
         .append("g")
         .attr("transform", "translate(" + widthJr / 2 + "," + heightJr / 2 + ")");
-
+    //////////////////////////////////////////////////
     const dtYr = Object.entries(YEAR(data)[1]).map(([key, value]) => ({
         key: key,
         value: value
@@ -107,7 +118,7 @@ function draw(data) {
         .attr("transform", "translate(0," + heightYr + ")")
         .call(d3.axisBottom(x))
         .selectAll("text")
-        .attr("transform", "translate(-10,0)rotate(-45)")
+        .attr("transform", "translate(-10,8)rotate(-90)")
         .style("text-anchor", "end");
 
     // Y axis
@@ -131,13 +142,13 @@ function draw(data) {
     document.getElementById("TopYr").innerHTML = "Year"
 
     /////////////////////////////////////////
-    Jrreversesort=Object.entries(JOURNAL(data)[1]).sort((a,b) => b[1]-a[1]);
+    Jrreversesort = Object.entries(JOURNAL(data)[1]).sort((a, b) => b[1] - a[1]);
     const dtJr = Object.fromEntries(Jrreversesort.slice(0, topFive))
     console.log(dtJr)
     //Object.fromEntries
     var color = d3.scaleOrdinal()
         .domain(dtJr)
-        .range(d3.schemeSet2);
+        .range(["#ffffff", "#f1f1f1", "#dedede", "#c6c6c6", "#a7a7a7", "#878787", "#686868", "#474747", "#222222", "#000000"].reverse());
 
     var pie = d3.pie()
         .value(function (d) { return d.value; })
@@ -185,6 +196,28 @@ function draw(data) {
         y.appendChild(t);
         document.getElementById("myOl").appendChild(y);
     }
+
+    //esc action
+    document.body.onkeyup = function (e) {
+        if (e.keyCode == 27) {
+            //clear canvas
+            document.getElementById('readfile').value = null;
+
+            document.getElementById("TopYr").innerHTML = ""
+            svgYr.selectAll('*').remove();
+
+            document.getElementById("TopJr").innerHTML = ""
+            svgJr.selectAll('*').remove();
+
+            document.getElementById("TopAth").innerHTML = ""
+            var rem = document.getElementById("myOl");
+            rem.remove();
+            //hide "press esc"
+            var esc = document.getElementById("press-esc");
+            esc.style.visibility = "hidden";
+        }
+
+    };
 }
 
 
@@ -240,4 +273,5 @@ function AUTHOR(d) {
     });
     return [Ath, counts];
 }
+
 

@@ -1,58 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
 
     <!--customize the display of the page or of the surrounding UI-->
-    <meta name="theme-color" content="black" />
+    <meta name="theme-color" content="#D0221F" />
     <meta name="robots" content="noindex" />
 
     <title>.bibVis</title>
     <meta name="description" content="bibTex visualizer" />
-    <meta name="keywords" content="graph, plot, bibTex, JSON, d3.js, visualization" />
+    <meta
+      name="keywords"
+      content="graph, plot, bibTex, JSON, d3.js, visualization"
+    />
 
     <!--icon-->
-    <link rel="icon" type="image/jpg" href="img/logo.jpg">
-    <link rel="apple-touch-icon" type="image/jpg" href="img/logo.jpg">
+    <link rel="icon" type="image/jpg" href="img/logo.jpg" />
+    <link rel="apple-touch-icon" type="image/jpg" href="img/logo.jpg" />
 
     <!--d3.js-->
     <script src="https://d3js.org/d3.v4.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
     <!--Fontawesome-->
-    <script src="https://kit.fontawesome.com/f15d61856c.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/f15d61856c.js"
+      crossorigin="anonymous"
+    ></script>
 
     <link href="src/style.css" rel="stylesheet" />
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="container">
-        <h1>.bibVis</h1>
+      <h1>.bibVis</h1>
 
-        <input type="file" id="readfile" name="bibTex" accept=".bib" onchange="readFile(this)" />
+      <input
+        type="file"
+        id="readfile"
+        name="bibTex"
+        accept=".bib"
+        onchange="readFile(this)"
+      />
 
-        <div class="graph">
-            <div>
-                <svg id="Yrviz" width="300" height="300"></svg>
-                <p id="TopYr"></p>
-            </div>
-            <div>
-                <svg id="Jrviz" width="300" height="300"></svg>
-                <p id="TopJr"></p>
-            </div>
-            <div>
-                <p id="TopAth"></p>
-                <span id="Ath"></span>
-            </div>
+      <!-- graph-->
+      <div class="graph" id="graph">
+        <div>
+          <svg id="Yrviz" width="1000" height="300"></svg>
+          <p id="TopYr"></p>
         </div>
+        <div>
+          <svg id="Jrviz" width="300" height="300"></svg>
+          <p id="TopJr"></p>
+        </div>
+        <div>
+          <p id="TopAth"></p>
+          <span id="Ath"></span>
+        </div>
+      </div>
+      <div id="press-esc">
+        <p>press escape <i class="fa fa-undo"></i></p>
+      </div>
     </div>
 
     <!--  custom script -->
     <script src="src/main.js"></script>
-</body>
-
+  </body>
 </html>

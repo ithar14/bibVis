@@ -12,6 +12,7 @@ h1{
 
 
 .graph {
+  padding-top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,4 +28,19 @@ h1{
   color:#D0221F;
   font-family: 'Roboto Flex', sans-serif;
   font-size:1em;
+}
+
+#press-esc{
+  font-family:'Source Serif 4', serif;
+  width : 230px;
+  height: 50px;
+  position : relative;
+  bottom : 0;
+  left : 50%;
+  transform: translate(-50%,-50%);
+  text-align : center;
+  font-size :2rem;
+  display : flex;
+
+  visibility : visible;
 }
