@@ -14,7 +14,7 @@ d3.js
 };
 
 check it out at [.bibVis](https://ithar14.github.io/bibVis/)
-## todo
+### todo
 
 - [ ] interactive pie chart
 - [ ] add value to bar chart
