@@ -19,3 +19,4 @@ check it out at [.bibVis](https://ithar14.github.io/bibVis/)
 - [ ] interactive pie chart
 - [ ] add value to bar chart
 - [ ] first/last name
+- [ ] drag and drop function
