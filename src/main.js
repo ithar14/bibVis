@@ -212,13 +212,26 @@ function draw(data) {
             document.getElementById("TopAth").innerHTML = ""
             var rem = document.getElementById("myOl");
             rem.remove();
+
             //hide "press esc"
+            console.log(document.getElementById('readfile').files.length !== 0)
             var esc = document.getElementById("press-esc");
-            esc.style.visibility = "hidden";
+            if (document.getElementById('readfile').files.length == 0) {
+                esc.style.visibility = "hidden";
+            }
         }
 
     };
+    console.log(document.getElementById('readfile').files.length !== 0)
+    var esc = document.getElementById("press-esc");
+    if (document.getElementById('readfile').files.length !== 0) {
+        esc.style.visibility = "visible";
+    }
+    else {
+        esc.style.visibility = "hidden";
+    }
 }
+
 
 
 function YEAR(d) {
@@ -273,5 +286,3 @@ function AUTHOR(d) {
     });
     return [Ath, counts];
 }
-
-
