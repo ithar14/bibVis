@@ -30,7 +30,7 @@ function readFile(input) {
     let reader = new FileReader();
 
     reader.readAsText(file);
-
+    
     reader.onload = function () {
         data = reader.result;
         bibtexString = data;
