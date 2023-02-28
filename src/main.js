@@ -30,7 +30,7 @@ function readFile(input) {
     let reader = new FileReader();
 
     reader.readAsText(file);
-    
+
     reader.onload = function () {
         data = reader.result;
         bibtexString = data;
@@ -182,17 +182,22 @@ function draw(data) {
     document.getElementById("TopJr").innerHTML = "Top Journals"
     /////////////////AUTHORS/////////////////
     //console.log(Object.entries(JOURNAL(data)[1]).sort((a,b) => b[1]-a[1]))
-    console.log(AUTHOR(data))
+
 
     keysSorted = Object.keys(AUTHOR(data)[1]).sort(function (a, b) { return AUTHOR(data)[1][a] - AUTHOR(data)[1][b] }).reverse()
     document.getElementById("TopAth").innerHTML = "Top Authors:"
     var x = document.createElement("OL");
     x.setAttribute("id", "myOl");
     document.getElementById('Ath').appendChild(x);
-
+    let LastFirst = [];
+    for (let i = 0; i < keysSorted.length; i++) {
+        LastFirst.push(keysSorted[i].trim().split(/,\s/));
+    }
+  
     for (let i = 0; i < topFive; i++) {
         var y = document.createElement("LI");
-        var t = document.createTextNode(Object.values(keysSorted)[i]);
+        //var t = document.createTextNode(Object.values(keysSorted)[i]);
+        var t = document.createTextNode(LastFirst[i][1] + ' ' + LastFirst[i][0]);
         y.appendChild(t);
         document.getElementById("myOl").appendChild(y);
     }
@@ -286,3 +291,4 @@ function AUTHOR(d) {
     });
     return [Ath, counts];
 }
+
