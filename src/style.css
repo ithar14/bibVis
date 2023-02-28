@@ -12,13 +12,36 @@
 
 .inputt {
   text-align: center;
+  padding: 30px;
+  color: #CF6F6E;
+  background-color: rgb(238, 238, 238);
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  font-family: 'Roboto Flex', sans-serif;
+  border-radius: 30px;
 }
-
+/*
 input[type="file"] {
   display: none;
 }
+*/
+input{
+  padding-top: 20px;
+  position: relative;
+  display: block;
+  left:50%;
+  transform: translate(-50%);
+  
+}
 
-.dragAndDrop {
+::-webkit-file-upload-button {
+  border-radius: 10px;
+  padding: 0.5em;
+  cursor: pointer;
+}
+
+#dragAndDrop {
   text-align: center;
   cursor: pointer;
   color: #CF6F6E;

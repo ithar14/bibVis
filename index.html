@@ -41,18 +41,19 @@
     <div class="container">
       <h1>.bibVis</h1>
       <div class="inputt">
-      <label for="readfile" class="dragAndDrop">
-        Drag & Drop your BibTex file here
-</label>
-      <input
-        type="file"
-        id="readfile"
-        name="bibTex"
-        accept=".bib"
-        onchange="readFile(this)"
-      />
-    </div>
-
+        <label for="readfile" id="dragAndDrop">
+          Drag & Drop your BibTex file here
+      </label>
+        <input
+          type="file"
+          id="readfile"
+          name="bibTex"
+          accept=".bib"
+          onchange="readFile(this)" 
+        />
+        
+      </div>
+      
       <!-- graph-->
       <div class="graph" id="graph">
         <div>
