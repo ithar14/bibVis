@@ -1,80 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, viewport-fit=cover"
-    />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
 
-    <!--customize the display of the page or of the surrounding UI-->
-    <meta name="theme-color" content="#D0221F" />
-    <meta name="robots" content="noindex" />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
 
-    <title>.bibVis</title>
-    <meta name="description" content="bibTex visualizer" />
-    <meta
-      name="keywords"
-      content="graph, plot, bibTex, JSON, d3.js, visualization"
-    />
+  <!--customize the display of the page or of the surrounding UI-->
+  <meta name="theme-color" content="#D0221F" />
+  <meta name="robots" content="noindex" />
 
-    <!--icon-->
-    <link rel="icon" type="image/jpg" href="src/Logo.png" />
-    <link rel="apple-touch-icon" type="image/jpg" href="src/Logo.png" />
+  <title>.bibVis</title>
+  <meta name="description" content="bibTex visualizer" />
+  <meta name="keywords" content="graph, plot, bibTex, JSON, d3.js, visualization" />
 
-    <!--d3.js-->
-    <script src="https://d3js.org/d3.v4.js"></script>
-    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+  <!--icon-->
+  <link rel="icon" type="image/jpg" href="src/Logo.png" />
+  <link rel="apple-touch-icon" type="image/jpg" href="src/Logo.png" />
 
-    <!--Fontawesome-->
-    <script
-      src="https://kit.fontawesome.com/f15d61856c.js"
-      crossorigin="anonymous"
-    ></script>
+  <!--d3.js-->
+  <script src="https://d3js.org/d3.v4.js"></script>
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
-    <link href="src/style.css" rel="stylesheet" />
-  </head>
+  <!--Fontawesome-->
+  <script src="https://kit.fontawesome.com/f15d61856c.js" crossorigin="anonymous"></script>
 
-  <body>
-    <div class="container">
-      <h1>.bibVis</h1>
-      <div class="inputt">
-        <label for="readfile" id="dragAndDrop">
-          Drag & Drop your BibTex file here
+  <link href="src/style.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="container">
+    <h1>.bibVis</h1>
+    <div class="inputt">
+      <label for="readfile" id="dragAndDrop">
+        Drag & Drop your BibTex file here
       </label>
-        <input
-          type="file"
-          id="readfile"
-          name="bibTex"
-          accept=".bib"
-          onchange="readFile(this)" 
-        />
-        
+      <input type="file" id="readfile" name="bibTex" accept=".bib" onchange="readFile(this)" />
+
+    </div>
+
+    <!-- graph-->
+    <div class="graph" id="graph">
+      <div>
+        <svg id="Yrviz" width="1000" height="300"></svg>
+        <p id="TopYr"></p>
       </div>
-      
-      <!-- graph-->
-      <div class="graph" id="graph">
-        <div>
-          <svg id="Yrviz" width="1000" height="300"></svg>
-          <p id="TopYr"></p>
-        </div>
-        <div>
-          <svg id="Jrviz" width="300" height="300"></svg>
-          <p id="TopJr"></p>
-        </div>
-        <div>
-          <p id="TopAth"></p>
-          <span id="Ath"></span>
-        </div>
+      <div>
+        <svg id="Jrviz" width="300" height="300"></svg>
+        <p id="TopJr"></p>
       </div>
-      <div id="press-esc">
-        <p>press escape <i class="fa fa-undo"></i></p>
+      <div>
+        <p id="TopAth"></p>
+        <span id="Ath"></span>
       </div>
     </div>
 
-    <!--  custom script -->
-    <script src="src/main.js"></script>
-  </body>
+    <!--about-->
+    <input type="checkbox" id="active">
+    <label for="active" class="menu-btn">?</label>
+    <div class="about">
+      <h1>
+        a tool for scholars and academics to evaluate their
+        BibTex files and generate charts by
+        Year, Top Journals, and Top Authors.
+        These visualizations make it simple to spot
+        trends and patterns in the data.<br>
+        <br> made by Ithar K. (Feb 2023) with d3.js
+      </h1>
+    </div>
+
+
+
+    <!--escape-->
+    <div id="press-esc">
+      <p>press escape <i class="fa fa-undo"></i></p>
+    </div>
+  </div>
+
+  <!--  custom script -->
+  <script src="src/main.js"></script>
+</body>
+
 </html>

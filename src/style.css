@@ -21,18 +21,19 @@
   font-family: 'Roboto Flex', sans-serif;
   border-radius: 30px;
 }
+
 /*
 input[type="file"] {
   display: none;
 }
 */
-input{
+input {
   padding-top: 20px;
   position: relative;
   display: block;
-  left:50%;
+  left: 50%;
   transform: translate(-50%);
-  
+
 }
 
 ::-webkit-file-upload-button {
@@ -91,4 +92,63 @@ h1 {
 
   color: #CF6F6E;
   visibility: hidden;
+}
+
+/*about*/
+input[type="checkbox"]{
+  display: none;
+}
+.about{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  
+  background:#D0221F;
+  clip-path: circle(26px at calc(100% - 64px) 88.5%);
+  transition: all 0.03s ease-in-out;
+}
+
+.about h1{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color : black;
+  font-family: 'Roboto Flex', sans-serif;
+  font-size : 2vh;
+}
+
+#active:checked ~ .about{
+  clip-path: circle(75%);
+}
+
+.menu-btn{
+  position: fixed;
+  z-index: 2;
+  right: 40px;
+  bottom: 7%;
+  
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 2rem;
+  
+  border-radius: 50%;
+  font-size: 20px;
+  color: #fff;
+  text-shadow: 0 0 3px black;
+  
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+#active:checked ~ .menu-btn{
+  color: black;
+}
+#active:checked ~ .menu-btn i:before{
+  content: "\f00d";
 }
